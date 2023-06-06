@@ -23,7 +23,7 @@ Distribution of modified artifacts to dependent repos is configurable.
 A collection of agile authoring templates are provided, each pre-populated with the scripts and
 configurations needed to support agile authoring.
 
-You can create repo(s) to support the artifact(s) you desire by instantiating each from the template type desired and performing some minimal customization.
+Create repo(s) to support the artifact(s) you desire by instantiating each from the template type desired and performing some minimal customization.
 
 Tutorials and templates are provided to set up agile authoring for each of the following: catalog, profile, component-definition and mapping-collection.
 
@@ -55,8 +55,8 @@ Alternatively, populate the GH_TOKEN environment variable with a GitHub API auth
 
 ##### GIT repo - catalog
 
-To create your `catalog` repo from the agile authoring template issue the below command.
-Substitute for `my-catalog` with your desired repo name.
+Create your `catalog` repo from the agile authoring template.
+Issue the below command, substitute for `my-catalog` with your desired repo name.
 
 ```
 $ gh repo create my-catalog --template https://github.com/IBM/compliance-trestle-template-catalog --public
@@ -66,8 +66,6 @@ $ gh repo create my-catalog --template https://github.com/IBM/compliance-trestle
 <summary>console</summary>
 Created repository degenaro/my-catalog on GitHub
 </details>
-
-To customize your `my-catalog` repo:
 
 ###### customize the repo settings
 
