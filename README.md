@@ -67,14 +67,34 @@ $ gh repo create my-catalog --template https://github.com/IBM/compliance-trestle
 Created repository degenaro/my-catalog on GitHub
 </details>
 
-To customize your `catalog` repo:
+To customize your `my-catalog` repo:
 
-<ul>
-<li>customize the repo settings<br>TBD
-<li>checkout the repo<br>TBD
-<li>customize the automation scripts<br>TBD
-<li>install the initial OSCAL catalog (in json format)<br>TBD
-</ul>
+###### customize the repo settings
+
+Create (or use existing) token. 
+Browser navigate [here](https://github.com/settings/tokens).
+Be sure token has `workflow` checked.
+
+<details>
+<summary>token creation</summary>
+<img src="images/token-create.png" width="500" height="600">
+</details>
+
+Install token (from above) in your newly created `my-catalog` repo.
+Browser navigate `my-catalog` repo:
+
+Settings -> Secrets and variables -> Actions
+
+Add repository secret name GIT_TOKEN with token value.
+
+<details>
+<summary>token add to repo</summary>
+<img src="images/token-catalog.png" width="500" height="600">
+</details>
+
+###### checkout the repo
+###### customize the automation scripts
+###### install the initial OSCAL catalog (in json format)
 
 The catalog repo is now ready for agile authoring!
 
