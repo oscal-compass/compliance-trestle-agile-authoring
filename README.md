@@ -25,26 +25,71 @@ configurations needed to support agile authoring.
 
 You can create repo(s) to support the artifact(s) you desire by instantiating each from the template type desired and performing some minimal customization.
 
-Tutorials and templates are provided to set up agile authoring for each of the following:
+Tutorials and templates are provided to set up agile authoring for each of the following: catalog, profile, component-definition and mapping-collection.
 
-`Template links`
+###### Template links
 
 - [catalog](https://github.com/IBM/compliance-trestle-template-catalog)
 - profile
-- component definition
-- mapping collection
-
-Description & Links: TBD
+- component-definition
+- mapping-collection
 
 ##### 3. GIT repo - one time setup
 
 ![onetime-setup](./drawio/onetime-setup.drawio.png)
 
-Description: TBD
+Described below is how to create agile authoring repos from templates.
+A template repo (1) is use to create an pre-populated repo (2) which is then customized (3).
 
-##### 3a. GIT repo - catalog
+##### prereqs
 
-Description: TBD
+- [gh](https://github.com/cli/cli#github-cli) is installed
+- `gh auth login` has been performed
+
+
+```
+$ gh status
+To get started with GitHub CLI, please run:  gh auth login
+Alternatively, populate the GH_TOKEN environment variable with a GitHub API authentication token.
+```
+
+##### GIT repo - catalog
+
+To create your `catalog` repo from the agile authoring template issue the below command.
+Substitute for `my-catalog` with your desired repo name.
+
+```
+$ gh repo create my-catalog --template https://github.com/IBM/compliance-trestle-template-catalog --public
+```
+
+<details>
+<summary>console</summary>
+Created repository degenaro/my-catalog on GitHub
+</details>
+
+To customize your `catalog` repo:
+
+<ul>
+<li>customize the repo settings<br>TBD
+<li>checkout the repo<br>TBD
+<li>customize the automation scripts<br>TBD
+<li>install the initial OSCAL catalog (in json format)<br>TBD
+</ul>
+
+The catalog repo is now ready for agile authoring!
+
+
+##### GIT repo - profile
+
+TBD
+
+##### GIT repo - component-definition
+
+TBD
+
+##### GIT repo - mapping-collection
+
+TBD
 
 ##### 4. GIT repo - documents lifecycle
 
