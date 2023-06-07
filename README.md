@@ -39,59 +39,73 @@ Tutorials and templates are provided to set up agile authoring for each of the f
 ![onetime-setup](./drawio/onetime-setup.drawio.png)
 
 Described below is how to create agile authoring repos from templates.
-A template repo (1) is use to create an pre-populated repo (2) which is then customized (3).
+A template repo is use to create a ready-to-configure repo which is then customized.
 
-##### prereqs
+##### Prerequisites
 
-- [gh](https://github.com/cli/cli#github-cli) is installed
-- `gh auth login` has been performed
-
-
-```
-$ gh status
-To get started with GitHub CLI, please run:  gh auth login
-Alternatively, populate the GH_TOKEN environment variable with a GitHub API authentication token.
-```
-
-##### GIT repo - catalog
-
-Create your `catalog` repo from the agile authoring template.
-Issue the below command, substitute for `my-catalog` with your desired repo name.
-
-```
-$ gh repo create my-catalog --template https://github.com/IBM/compliance-trestle-template-catalog --public
-```
-
-<details>
-<summary>console</summary>
-Created repository degenaro/my-catalog on GitHub
-</details>
-
-###### customize the repo settings
+- A GitHub token with `workflow` checked has been created
 
 Create (or use existing) token. 
 Browser navigate [here](https://github.com/settings/tokens).
-Be sure token has `workflow` checked.
 
 <details>
 <summary>token creation</summary>
 <img src="images/token-create.png" width="500" height="600">
 </details>
 
-Install token (from above) in your newly created `my-catalog` repo.
-Browser navigate `my-catalog` repo:
+##### GIT repo - catalog
 
-Settings -> Secrets and variables -> Actions
+Create your `catalog` repo from the agile authoring template.
+
+Follow the instructions for [creating-a-repository-from-a-template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) to create a new repository from template.
+
+Use the [compliance-trestle-template-catalog](https://github.com/IBM/compliance-trestle-template-catalog) as your template.
+
+Choose a repo name and description, for example:
+- Repository name `trestle-catalog-nist-800-53-rev5`
+- Description `trestle-catalog-nist-800-53-rev5`
+
+###### Customize the catalog repo settings
+
+Install token (from prereqs above) in your newly created `trestle-catalog-nist-800-53-rev5` repo.
+
+Navigate to the newly created `trestle-catalog-nist-800-53-rev5` repo, then use path:
+
+*Settings -> Secrets and variables -> Actions -> New repository secret*
 
 Add repository secret name GIT_TOKEN with token value.
+
+*-> Add secret*
 
 <details>
 <summary>token add to repo</summary>
 <img src="images/token-catalog.png" width="500" height="600">
 </details>
 
-###### checkout the repo
+###### Add catalog to repo
+
+- Download the NIST 800-53 Rev 5 catalog to your workstation (laptop)
+
+```
+$ mkdir -p download/NIST_SP-800-53_rev5
+$ cd download/NIST_SP-800-53_rev5
+$ wget https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json
+$ mv NIST_SP-800-53_rev5_catalog.json catalog.json
+```
+
+- Put the NIST 800-53 Rev 5 catalog into your repo by dragging folder `NIST_SP-800-53_rev5/catalog.json` to the repo in the browser.
+
+<details>
+<summary>add catalog</summary>
+<img src="images/add-catalog.png" width="500" height="600">
+</details>
+
+*-> Commit changes*
+
 ###### customize the automation scripts
+
+TBD 
+
 ###### install the initial OSCAL catalog (in json format)
 
 The catalog repo is now ready for agile authoring!
