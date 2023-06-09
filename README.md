@@ -45,89 +45,24 @@ A template repo is use to create a ready-to-configure repo which is then customi
 
 - A GitHub token with `workflow` checked has been created
 
-Create (or use existing) token. 
-Browser navigate [here](https://github.com/settings/tokens).
+Create or use existing [token](https://github.com/settings/tokens). Be sure that `workflow` is enabled.
 
 <details>
 <summary>token creation</summary>
 <img src="images/token-create.png" width="500" height="600">
 </details>
 
-##### GIT repo - catalog
+##### GIT repo creation
 
-Create your `catalog` repo from the agile authoring template.
+- [create repo for catalog](README.create-repo-catalog.md)
+- [create repo for profile](README.create-repo-profile.md)
+- [create repo for component-definition](README.create-repo-component-definition.md)
+- [create repo for mapping-collection](README.create-repo-mapping-collection.md)
 
-Follow the instructions for [creating-a-repository-from-a-template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) to create a new repository from template.
-
-Use the [compliance-trestle-template-catalog](https://github.com/IBM/compliance-trestle-template-catalog) as your template.
-
-Choose a repo name and description, for example:
-- Repository name `trestle-catalog-nist-800-53-rev5`
-- Description `trestle-catalog-nist-800-53-rev5`
-
-###### Customize the catalog repo settings
-
-Install token (from prereqs above) in your newly created `trestle-catalog-nist-800-53-rev5` repo.
-
-Navigate to the newly created `trestle-catalog-nist-800-53-rev5` repo, then use path:
-
-*Settings -> Secrets and variables -> Actions -> New repository secret*
-
-Add repository secret name GIT_TOKEN with token value.
-
-*-> Add secret*
-
-<details>
-<summary>token add to repo</summary>
-<img src="images/token-catalog.png" width="500" height="600">
-</details>
-
-###### Add catalog to repo
-
-- Download the NIST 800-53 Rev 5 catalog to your workstation (laptop)
-
-```
-$ mkdir -p download/NIST_SP-800-53_rev5
-$ cd download/NIST_SP-800-53_rev5
-$ wget https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json
-$ mv NIST_SP-800-53_rev5_catalog.json catalog.json
-```
-
-- Put the NIST 800-53 Rev 5 catalog into your repo by dragging folder `NIST_SP-800-53_rev5/catalog.json` to the repo in the browser.
-
-<details>
-<summary>add catalog</summary>
-<img src="images/add-catalog.png" width="500" height="600">
-</details>
-
-*-> Commit changes*
-
-###### customize the automation scripts
-
-TBD 
-
-###### install the initial OSCAL catalog (in json format)
-
-The catalog repo is now ready for agile authoring!
-
-
-##### GIT repo - profile
-
-TBD
-
-##### GIT repo - component-definition
-
-TBD
-
-##### GIT repo - mapping-collection
-
-TBD
 
 ##### 4. GIT repo - documents lifecycle
 
-Diagram: TBD
-
-Description: TBD
+TBD
 
 ##### 5. References
 
