@@ -1,5 +1,14 @@
 ## catalog repo setup
 
+Instructions for setting up trestle agile authoring GIT repository for OSCAL `catalog` document.
+
+###### 0. prerequisites
+
+- create GitHub [token](README.md#prerequisites)
+- follow steps 1 & 2 for creating [profile](README.create-repo-profile.md) repository.
+
+###### 1. catalog repo creation
+
 Create your `catalog` repo from the agile authoring template.
 
 Follow the instructions for [creating-a-repository-from-a-template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) to create a new repository from template.
@@ -13,7 +22,31 @@ Choose a repo name and description, for example:
 
 *-> Create repository from template*
 
-###### Customize the catalog repo settings
+<details>
+<summary>visual</summary>
+<img src="images/catalog.create-from-template.png" width="500" height="300">
+</details>
+
+-----
+
+###### 2. create catalog develop branch
+
+Add branch "develop".
+
+*-> Code*
+
+*-> main -> find or create branch:* develop
+
+*-> create branch: develop from 'main'* 
+
+<details>
+<summary>visual</summary>
+<img src="images/catalog.add-branch-develop.png" width="500" height="600">
+</details>
+
+-----
+
+###### 3. customize the catalog repo settings
 
 Install token (from prereqs above) in your newly created `trestle-catalog-nist-800-53-rev5` repo.
 Navigate to the newly created `trestle-catalog-nist-800-53-rev5` repo, then use path:
@@ -28,27 +61,13 @@ See [prerequisites](README.md#Prerequisites) for token requirements.
 *-> Add secret*
 
 <details>
-<summary>token add to repo</summary>
-<img src="images/token-catalog.png" width="500" height="600">
+<summary>visual</summary>
+<img src="images/catalog.add-token.png" width="500" height="600">
 </details>
 
+-----
 
-###### create develop branch
-
-Add branch "develop".
-
-*-> Code*
-
-*-> main -> find or create branch:* develop
-
-*-> create branch: develop from 'main'* 
-
-<details>
-<summary>add develop branch</summary>
-<img src="images/add-branch-develop.png" width="500" height="600">
-</details>
-
-###### customize the automation scripts
+###### 4. customize the catalog automation scripts (develop branch)
 
 Navigate to the newly created `trestle-catalog-nist-800-53-rev5` repo, then edit:
 
@@ -57,26 +76,56 @@ Navigate to the newly created `trestle-catalog-nist-800-53-rev5` repo, then edit
 *-> edit (pencil on right)*
 Update the variables:
 
-- GROUP: is the `family` part of the URL (e.g. `degenaro` of https://github.com/`degenaro`/trestle-catalog-nist-800-53-rev5)
 - CATALOG: is the folder name containing the catalog in the catalogs folder (e.g. `NIST_SP-800-53_rev5` of catalogs/`NIST_SP-800-53_rev5`/catalog.json)
-- PROFILE is the folder name containing the profile
+
+- REPO_BASE: is the `base` part of the URL (e.g. `degenaro` of https://github.com/`degenaro`/trestle-catalog-nist-800-53-rev5)
+
+- REPO_CATALOG is the part of the URL for the catalog under the base (e.g. `trestle-catalog-nist-800-53-rev5` of https://github.com/degenaro/`trestle-catalog-nist-800-53-rev5`)
+- REPO_PROFILE is the part of the URL for the profile under the base (e.g. `trestle-profile-nist-800-53-rev5` of https://github.com/degenaro/`trestle-profile-nist-800-53-rev5`)
+
+- ENAME is the name of the committer
 - EMAIL is the e-mail address to receive notifications
 
 Example:
 
-- GROUP=degenaro 
-- CATALOG=NIST_SP-800-53_rev5 
-- PROFILE=NIST_SP-800-53_rev5 
-- EMAIL=lou.degenaro@gmail.com 
+- CATALOG=*NIST_SP-800-53_rev5*
+
+- REPO_BASE=*degenaro*
+
+- REPO_CATALOG=*trestle-catalog-nist-800-53-rev5*
+- REPO_PROFILE=*trestle-profile-nist-800-53-rev5*
+
+- ENAME=*Automation-Bot*
+- EMAIL=*lou.degenaro@gmail.com*
 
 *-> Commit changes*
 
 <details>
-<summary>update config.env</summary>
-<img src="images/update-config.env.png" width="500" height="600">
+<summary>visual</summary>
+<img src="images/catalog.update-config.env.png" width="500" height="600">
 </details>
 
-###### install the initial OSCAL catalog (in json format)
+-----
+
+###### 5. customize the catalog automation yml (develop branch)
+
+*-> select file:* .github/workflows/main-push.yml
+*-> edit (pencil on right)*
+Locate these lines:
+
+- repository: my-repo-base/my-profile
+- path: './my-profile'
+
+change to:
+
+- repository: degenaro/trestle-profile-nist-800-53-rev5
+- path: './trestle-profile-nist-800-53-rev5'
+
+*-> Commit changes*
+
+-----
+
+###### 6. install the initial OSCAL catalog in json format (develop branch)
 
 - Download the NIST 800-53 Rev 5 catalog to your workstation (laptop)
 
@@ -102,6 +151,18 @@ Drag `NIST_SP-800-53_rev5/catalog.json` to catalogs folder.
 *-> Commit changes*
 
 <details>
-<summary>add catalog</summary>
-<img src="images/add-catalog.png" width="500" height="600">
+<summary>visual</summary>
+<img src="images/catalog.copy.png" width="500" height="600">
 </details>
+
+###### 7. push changes from develop branch to main branch
+
+*-> Compare & pull request*
+
+**Note**: For semantic versioning, set to title to `feat: initial catalog`
+
+*-> Create pull request*
+
+*-> Merge pull request*
+
+*-> Confirm merge*

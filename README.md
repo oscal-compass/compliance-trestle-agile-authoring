@@ -2,7 +2,7 @@
 
 Note: This repo is currently a `Work-In-Progress`...
 
-##### 1. Overview: agile authoring for compliance-trestle
+##### 1. overview: agile authoring for compliance-trestle
 
 Compliance-[trestle](https://github.com/IBM/compliance-trestle)
 supports agile authoring of 
@@ -27,10 +27,10 @@ Create repo(s) to support the artifact(s) you desire by instantiating each from 
 
 Tutorials and templates are provided to set up agile authoring for each of the following: catalog, profile, component-definition and mapping-collection.
 
-###### Template links
+###### template links
 
 - [catalog](https://github.com/IBM/compliance-trestle-template-catalog)
-- profile
+- [profile](https://github.com/IBM/compliance-trestle-template-profile)
 - component-definition
 - mapping-collection
 
@@ -41,15 +41,15 @@ Tutorials and templates are provided to set up agile authoring for each of the f
 Described below is how to create agile authoring repos from templates.
 A template repo is use to create a ready-to-configure repo which is then customized.
 
-##### Prerequisites
+##### prerequisites
 
 - A GitHub token with `workflow` checked has been created
 
 Create or use existing [token](https://github.com/settings/tokens). Be sure that `workflow` is enabled.
 
 <details>
-<summary>token creation</summary>
-<img src="images/token-create.png" width="500" height="600">
+<summary>visual</summary>
+<img src="images/aa.token-create.png" width="500" height="600">
 </details>
 
 ##### GIT repo creation
@@ -64,7 +64,7 @@ Create or use existing [token](https://github.com/settings/tokens). Be sure that
 
 TBD
 
-##### 5. References
+##### 5. references
 
 - [Compliance Automated Standard Solution (COMPASS), Part 3: Artifacts and Personas](https://dzone.com/articles/compliance-automated-standard-solution-compass-part-3-artifacts-and-personas)
 - [Trestle: Compliance-as-Code Orchestrator and Automation Workflows](https://csrc.nist.gov/csrc/media/Presentations/2022/oscal-mini-workshop-2-ibm-s-trestle/IBM_Trestle.pdf)
