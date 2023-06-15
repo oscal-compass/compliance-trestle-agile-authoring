@@ -1,4 +1,4 @@
-## catalog repo setup
+## catalog repo create
 
 Instructions for setting up trestle agile authoring GIT repository for OSCAL `catalog` document.
 

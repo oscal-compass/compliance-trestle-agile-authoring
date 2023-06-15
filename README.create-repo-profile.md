@@ -1,4 +1,4 @@
-## profile repo setup
+## profile repo create
 
 Instructions for setting up trestle agile authoring GIT repository for OSCAL `profile` document.
 
