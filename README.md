@@ -1,6 +1,7 @@
 ## compliance-trestle-agile-authoring
 
-Note: This repo is currently a `Work-In-Progress`...
+This repo is comprises documentation and tutorials for OSCAL-oriented agile authoring pipelines.
+To establish foundational knowledge about OSCAL and the agile authoring paradigm, see the references at the bottom of this page.
 
 ##### 1. overview: agile authoring for compliance-trestle
 
@@ -62,7 +63,31 @@ Create or use existing [token](https://github.com/settings/tokens). Be sure that
 
 ##### 4. GIT repo - documents lifecycle
 
-TBD
+
+![runtime](./drawio/runtime.drawio.png)
+
+The collection of GitHub repos are related to each other as shown above.
+
+The catalog repo contains a catalog, e.g. NIST 800-53 moderate. 
+Changes to the the catalog go thru the GIT approval and release process.
+The resulting OSCAL catalog is  automatically pushed to corresponding profile repo as a pull request.
+
+The profile repo contains a profile, e.g. a selection of controls from the NIST 800-53 moderate catalog. Several kids of changes kind of changes are possible:
+- an updated catalog
+- an updated mapping-collection
+- added or deleted controls
+Changes to the the profile go thru the GIT approval and release process.
+The resulting OSCAL profile is automatically pushed to corresponding component-definition repo as a pull request.
+
+The mapping-collection repo contains a mapping-collection, e.g. a mapping of controls from one standard e.g. SOC2 to another standard e.g. NIST 800-53 moderate.
+Changes to the the mapping-collection go thru the GIT approval and release process.
+The resulting OSCAL mapping-collection is  automatically pushed to corresponding profile repo as a pull request.
+
+The component-definition repo contains a component-definition, e.g. a mapping of controls from one standard e.g. NIST 800-53 moderate to a set of rules
+and/checks.
+Changes to the the component-definition go thru the GIT approval and release process.
+The resulting OSCAL component-definition is  automatically pushed to corresponding system-security-plan repo as a pull request.
+
 
 ##### 5. references
 
