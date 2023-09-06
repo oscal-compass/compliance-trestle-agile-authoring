@@ -125,3 +125,42 @@ change to:
 
 *-> Commit changes*
 
+-----
+
+###### 6. install the initial OSCAL catalog in json format (from catalog repo)
+
+- Incorporate catalog sent from [catalog](https://github.com/degenaro/trestle-catalog-nist-800-53-rev5) repo into develop branch.
+
+*-> navigate to:* trestle-profile-nist-800-53-rev5/pulls
+*-> Compare & pull request*
+
+<details>
+<summary>visual</summary>
+<img src="images/profile.compare-and-pull-request.png" width="500" height="300">
+</details>
+
+*-> Create pull request*
+
+<details>
+<summary>visual</summary>
+<img src="images/profile.create-pull-request.png" width="500" height="300">
+</details>
+
+*-> Merge pull request*
+
+<details>
+<summary>visual</summary>
+<img src="images/profile.merge-pull-request.png" width="500" height="300">
+</details>
+
+*-> Confirm merge*
+Pull request successfully merged and closed
+
+- Merge develop branch containing catalog into main branch.
+
+*-> Merge pull request*
+*-> Confirm merge*
+Pull request successfully merged and closed
+
+
+
