@@ -162,5 +162,35 @@ Pull request successfully merged and closed
 *-> Confirm merge*
 Pull request successfully merged and closed
 
+-----
 
+###### 7. install the initial OSCAL profile in json format (develop branch)
+
+- Download the NIST 800-53 Rev 5 profile (FedRAMP High) to your workstation (laptop)
+
+```
+$ mkdir -p download/NIST_SP-800-53_rev5
+$ cd download/NIST_SP-800-53_rev5
+$ wget https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_HIGH-baseline_profile.json
+$ mv NIST_SP-800-53_rev5_HIGH-baseline_profile.json
+```
+
+- Put the NIST 800-53 Rev 5 profile into your repo by dragging folder `NIST_SP-800-53_rev5/profile.json` to the repo in the browser.
+
+In browser:
+
+Navigate to catalogs folder.
+
+*-> Add file -> Upload files*
+
+Drag `NIST_SP-800-53_rev5/profile.json` to profiles folder.
+
+**Note**: Be sure the folder is included and that the folder name matches the `PROFILE=` name specified in the `config.env`.
+
+*-> Commit changes*
+
+<details>
+<summary>visual</summary>
+<img src="images/profile.copy.png" width="500" height="600">
+</details>
 
