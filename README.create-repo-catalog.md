@@ -5,7 +5,7 @@ Instructions for setting up trestle agile authoring GIT repository for OSCAL `ca
 ###### 0. prerequisites
 
 - create GitHub [token](README.md#prerequisites)
-- follow steps 1 & 2 for creating [profile](README.create-repo-profile.md) repository.
+- follow steps 1 & 2 for creating downstream [profile](README.create-repo-profile.md) repository.
 
 ###### 1. catalog repo creation
 
