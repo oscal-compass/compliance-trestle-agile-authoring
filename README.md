@@ -9,9 +9,9 @@ Compliance-[trestle](https://github.com/IBM/compliance-trestle)
 supports agile authoring of 
 [OSCAL](https://pages.nist.gov/OSCAL/) 
 artifacts such as 
-[catalogs](https://pages.nist.gov/OSCAL/reference/latest/catalog/json-outline/), 
-[profiles](https://pages.nist.gov/OSCAL/reference/latest/profile/json-outline/),
-[component definitions](https://pages.nist.gov/OSCAL/reference/latest/component-definition/json-outline/),
+[catalogs](https://pages.nist.gov/OSCAL-Reference/models/latest/catalog/json-outline/), 
+[profiles](https://pages.nist.gov/OSCAL-Reference/models/latest/profile/json-outline/),
+[component definitions](https://pages.nist.gov/OSCAL-Reference/models/latest/component-definition/json-outline/),
 and
 [mapping collections](https://pages.nist.gov/OSCAL/reference/develop/mapping/json-outline/)
 which can be managed in a GIT repo with all the associated built-in desirable features including release management, semantic versioning, access control etc.
