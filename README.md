@@ -13,7 +13,7 @@ artifacts such as
 [profiles](https://pages.nist.gov/OSCAL-Reference/models/latest/profile/json-outline/),
 [component definitions](https://pages.nist.gov/OSCAL-Reference/models/latest/component-definition/json-outline/),
 and
-[mapping collections](https://pages.nist.gov/OSCAL/reference/develop/mapping/json-outline/)
+[mapping collections](https://web.archive.org/web/20230422003039/https://pages.nist.gov/OSCAL/reference/develop/mapping/json-outline/)
 which can be managed in a GIT repo with all the associated built-in desirable features including release management, semantic versioning, access control etc.
 
 Beneficially, markdown snippets are automatically supported which facilitates management of large OSCAL documents in more manageable pieces that are understandable by compliance-oriented personnel.
