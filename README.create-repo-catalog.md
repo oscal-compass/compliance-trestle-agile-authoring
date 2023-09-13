@@ -24,7 +24,14 @@ Choose a repo name and description, for example:
 
 <details>
 <summary>visual</summary>
-<img src="images/catalog.create-from-template.png" width="500" height="300">
+<img src="drawio/catalog.create-repository-from-template.drawio.png" width="500" height="300">
+</details>
+
+*-> Create a new repository*
+
+<details>
+<summary>visual</summary>
+<img src="drawio/catalog.create-a-new-repository.drawio.png" width="300" height="300">
 </details>
 
 -----
@@ -96,7 +103,7 @@ Example:
 - REPO_PROFILE=*trestle-profile-nist-800-53-rev5*
 
 - ENAME=*Automation-Bot*
-- EMAIL=*lou.degenaro@gmail.com*
+- EMAIL=*compliance.trestle@gmail.com*
 
 *-> Commit changes*
 
@@ -166,3 +173,27 @@ Drag `NIST_SP-800-53_rev5/catalog.json` to catalogs folder.
 *-> Merge pull request*
 
 *-> Confirm merge*
+
+
+###### 8. create release in main branch, then push changes from main branch to develop branch
+
+*-> Create a new release*
+
+<details>
+<summary>visual</summary>
+<img src="drawio/catalog.create-a-new-release.drawio.png" width="500" height="600">
+</details>
+
+*-> Choose a tag*
+
+<details>
+<summary>visual</summary>
+<img src="drawio/catalog.choose-a-tag.drawio.png" width="500" height="600">
+</details>
+
+*-> Publish release*
+
+<details>
+<summary>visual</summary>
+<img src="drawio/catalog.publish-release.drawio.png" width="500" height="600">
+</details>
