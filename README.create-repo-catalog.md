@@ -90,7 +90,7 @@ Update the variables:
 - REPO_CATALOG is the part of the URL for the catalog under the base (e.g. `trestle-catalog-nist-800-53-rev5` of https://github.com/degenaro/`trestle-catalog-nist-800-53-rev5`)
 - REPO_PROFILE is the part of the URL for the profile under the base (e.g. `trestle-profile-nist-800-53-rev5` of https://github.com/degenaro/`trestle-profile-nist-800-53-rev5`)
 
-- ENAME is the name of the committer
+- NAME is the name of the committer
 - EMAIL is the e-mail address to receive notifications
 
 Example:
@@ -102,7 +102,7 @@ Example:
 - REPO_CATALOG=*trestle-catalog-nist-800-53-rev5*
 - REPO_PROFILE=*trestle-profile-nist-800-53-rev5*
 
-- ENAME=*Automation-Bot*
+- NAME=*Automation-Bot*
 - EMAIL=*compliance.trestle@gmail.com*
 
 *-> Commit changes*
