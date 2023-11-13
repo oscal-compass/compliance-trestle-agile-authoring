@@ -1,0 +1,89 @@
+
+# compliance-trestle agile authoring repositories set-up configuration
+
+version: 1.0
+
+git:
+  scheme: https
+  domain: github.com
+  owner: REPLACE_ME
+
+repos:
+
+  # catalog repo
+  acme-catalog-nist-800-53:
+    template: https://github.com/IBM/compliance-trestle-template-catalog
+    access: public
+    oscal-type: catalog
+    downstream: 
+      - acme-profile-nist-800-53
+    # copy content from src (raw) to tgt (instantiation of catalog template)
+    # note: expectation is that src is pre-populated local folder
+    content:
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/catalog/NIST_SP-800-53_rev5
+        src-file: NIST_SP-800-53_rev5_catalog.json
+        tgt-folder: catalogs/acme-catalog-nist-800-53
+        tgt-file: catalog.json
+        
+  # profile repo
+  acme-profile-nist-800-53:
+    template: https://github.com/IBM/compliance-trestle-template-profile
+    access: public
+    oscal-type: profile
+    downstream: 
+      - acme-component-definition
+    # copy content from src (raw) to tgt (instantiation of profile template)
+    # note: expectation is that src is pre-populated local folder
+    content:
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/profile/NIST_SP-800-53_rev5
+        src-file: NIST_SP-800-53_rev5_HIGH-baseline_profile.json
+        tgt-folder: profiles/acme-profile-nist-800-53
+        tgt-file: profile.json
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/catalog/NIST_SP-800-53_rev5
+        src-file: NIST_SP-800-53_rev5_catalog.json
+        tgt-folder: catalogs/acme-catalog-nist-800-53
+        tgt-file: catalog.json
+    # modify profile.json content to reference local folder for catalog
+    modify:
+      - tgt-folder: profiles/acme-profile-nist-800-53
+        tgt-file: profile.json
+        before: NIST_SP-800-53_rev5_catalog.json
+        after: catalogs/acme-catalog-nist-800-53/catalog.json
+        
+  # component-definition repo
+  acme-component-definition:
+    template: https://github.com/IBM/compliance-trestle-template-component-definition
+    access: public
+    oscal-type: component-definition
+    downstream: 
+      - acme-system-security-plan
+    # copy content from src (raw) to tgt (instantiation of component-definition template)
+    # note: expectation is that src is pre-populated local folder
+    content:
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/component-definition/data
+        src-file: acme-component-definition.config
+        tgt-folder: data
+        tgt-file: csv-to-oscal-cd.config
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/component-definition/data
+        src-file: acme-component-definition.csv
+        tgt-folder: data
+        tgt-file: acme-component-definition.csv
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/profile/NIST_SP-800-53_rev5
+        src-file: NIST_SP-800-53_rev5_HIGH-baseline_profile.json
+        tgt-folder: profiles/acme-profile-nist-800-53
+        tgt-file: profile.json
+      - src-folder: /tmp/download/compliance-trestle/scratch-area/catalog/NIST_SP-800-53_rev5
+        src-file: NIST_SP-800-53_rev5_catalog.json
+        tgt-folder: catalogs/acme-catalog-nist-800-53
+        tgt-file: catalog.json
+    # modify profile.json content to reference local folder for catalog
+    modify:
+      - tgt-folder: profiles/acme-profile-nist-800-53
+        tgt-file: profile.json
+        before: NIST_SP-800-53_rev5_catalog.json
+        after: catalogs/acme-catalog-nist-800-53/catalog.json
+        
+email:
+  name: Automation-Bot
+  address: compliance.trestle@gmail.com
+  
