@@ -230,6 +230,8 @@ HOWEVER, BE CAREFUL AS DELETION CANNOT BE UNDONE.
 
 ###### 6.1 run the scripting to `delete` the repos
 
+Issue the `make delete` command to perform delete. See console example below.
+
 <small>
 Note: use gmake on Mac.
 </small>
