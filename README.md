@@ -73,7 +73,7 @@ This repo contains scripting that assists in the setup of your agile authoring r
 - git command: [git install](https://github.com/git-guides/install-git)
 - gh command: [gh installation](https://github.com/cli/cli#installation)
 
-##### 5. Assisted repos setup
+##### 5. Assisted repos setup, with sample data content
 
 Once the pre-requisites are installed, use the scripting from located in this repo to setup catalog, profile and component-definition repos. The script employs the templates cited above to create catalog, profile, and component-definition and customized for the example Acme organization.
 
@@ -127,7 +127,17 @@ modify config file visuals:
 <img src="drawio/config.after.drawio.png" width="500" height="600">
 </details>
 
-###### 5.3 run the scripting to `create` the repos
+###### 5.4 run the scripting to `create` the repos
+
+The scripting comprises two basic parts. Part I is to fetch sample content data from public repos:
+
+- NIST_SP-800-53_rev5_catalog.json
+- NIST_SP-800-53_rev5_HIGH-baseline_profile.json
+- acme-component-definition.csv (and acme-component-definition.config)
+
+Part II is to create the agile authoring repos, customize the scripting contained therein, and install the content acquired in part I.
+
+Issue the `make create` command to perform fetching and creating. See console example below.
 
 <small>
 Note: use gmake on Mac.
