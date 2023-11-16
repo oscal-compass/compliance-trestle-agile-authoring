@@ -106,47 +106,32 @@ def synthesize_repo_url(git_scheme: str, git_domain: str, git_owner: str, repo_n
 
 
 def update_config_env(
-    config_env_path: pathlib.Path,
-    repo_oscal_type: str,
-    git_owner: str,
-    repo_name: str,
-    downstream: str,
-    email_name: str,
-    email_address: str
+    config_env_path: pathlib.Path, git_owner: str, repo_name: str, downstream: str, email_name: str, email_address: str
 ) -> None:
     """Update config.env."""
     with open(config_env_path, 'r') as f:
         lines = f.readlines()
     with open(config_env_path, 'w') as f:
         for line in lines:
-            if repo_oscal_type == 'catalog':
-                line = line.replace('CATALOG=catalog-folder', f'CATALOG={repo_name}')
-                line = line.replace('REPO_BASE=my-repo-base', f'REPO_BASE={git_owner}')
-                line = line.replace('REPO_PROFILE=my-profile', f'REPO_PROFILE={downstream}')
-                line = line.replace('NAME=Automation-Bot', f'NAME={email_name}')
-                line = line.replace('EMAIL=automation@example.com', f'EMAIL={email_address}')
-                f.write(line)
-            elif repo_oscal_type == 'profile':
-                line = line.replace('PROFILE=profile-folder', f'PROFILE={repo_name}')
-                line = line.replace('REPO_BASE=my-repo-base', f'REPO_BASE={git_owner}')
-                line = line.replace('REPO_COMPONENT_DEFINITION=my-component-definition', f'REPO_PROFILE={downstream}')
-                line = line.replace('NAME=Automation-Bot', f'NAME={email_name}')
-                line = line.replace('EMAIL=automation@example.com', f'EMAIL={email_address}')
-                f.write(line)
-            elif repo_oscal_type == 'component-definition':
-                line = line.replace(
-                    'COMPONENT_DEFINITION=component-definition-folder', f'COMPONENT_DEFINITION={repo_name}'
-                )
-                line = line.replace('REPO_BASE=my-repo-base', f'REPO_BASE={git_owner}')
-                line = line.replace(
-                    'REPO_COMPONENT_DEFINITION=my-component-definition', f'REPO_COMPONENT_DEFINITION={repo_name}'
-                )
-                line = line.replace(
-                    'REPO_SYSTEM_SECURITY_PLAN=my-system-security-plan', f'REPO_SYSTEM_SECURITY_PLAN={downstream}'
-                )
-                line = line.replace('NAME=Automation-Bot', f'NAME={email_name}')
-                line = line.replace('EMAIL=automation@example.com', f'EMAIL={email_address}')
-                f.write(line)
+            # common
+            line = line.replace('REPO_BASE=my-repo-base', f'REPO_BASE={git_owner}')
+            line = line.replace('NAME=Automation-Bot', f'NAME={email_name}')
+            line = line.replace('EMAIL=automation@example.com', f'EMAIL={email_address}')
+            # catalog
+            line = line.replace('CATALOG=catalog-folder', f'CATALOG={repo_name}')
+            line = line.replace('REPO_PROFILE=my-profile', f'REPO_PROFILE={downstream}')
+            # profile
+            line = line.replace('PROFILE=profile-folder', f'PROFILE={repo_name}')
+            line = line.replace('REPO_COMPONENT_DEFINITION=my-component-definition', f'REPO_PROFILE={downstream}')
+            # component-definition
+            line = line.replace('COMPONENT_DEFINITION=component-definition-folder', f'COMPONENT_DEFINITION={repo_name}')
+            line = line.replace(
+                'REPO_COMPONENT_DEFINITION=my-component-definition', f'REPO_COMPONENT_DEFINITION={repo_name}'
+            )
+            line = line.replace(
+                'REPO_SYSTEM_SECURITY_PLAN=my-system-security-plan', f'REPO_SYSTEM_SECURITY_PLAN={downstream}'
+            )
+            f.write(line)
 
 
 def update_workflow(workflow_path: pathlib.Path, repo_oscal_type: str, git_owner: str, downstream: str) -> None:
@@ -203,11 +188,11 @@ def install_content(repo: Dict, oscal_type: str, cwd: str) -> bool:
         cmd = f'cp -p {src} {tgt}'
         run_cmd(cmd, cwd)
         rval = True
-    modify_content(repo, oscal_type, cwd)
+    modify_content(repo, cwd)
     return rval
 
 
-def modify_content(repo: Dict, oscal_type: str, cwd: str) -> None:
+def modify_content(repo: Dict, cwd: str) -> None:
     """Modify content."""
     modify = repo.get('modify')
     if not modify:
@@ -288,7 +273,7 @@ def repo_create(
         set_secret(token, gitdir)
         # update config.env
         config_env_path = pathlib.Path(gitdir) / 'config.env'
-        update_config_env(config_env_path, repo_oscal_type, git_owner, repo_name, downstream, email_name, email_address)
+        update_config_env(config_env_path, git_owner, repo_name, downstream, email_name, email_address)
         # update main-push.yml
         workflow_path = pathlib.Path(gitdir) / '.github' / 'workflows' / 'main-push.yml'
         update_workflow(workflow_path, repo_oscal_type, git_owner, downstream)
