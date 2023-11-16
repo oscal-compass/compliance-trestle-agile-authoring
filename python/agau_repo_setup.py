@@ -300,6 +300,10 @@ def repo_create(
         run_cmd(cmd, gitdir)
         cmd = 'git add .'
         run_cmd(cmd, gitdir)
+        cmd = f'git config user.email {email_address}'
+        run_cmd(cmd, gitdir)
+        cmd = f'git config user.name {email_name}'
+        run_cmd(cmd, gitdir)
         cmd = 'git commit -m Configure'
         run_cmd(cmd, gitdir)
         cmd = 'git push'
@@ -312,6 +316,10 @@ def repo_create(
         # install content into develop branch
         if install_content(repo, repo_oscal_type, gitdir):
             cmd = 'git add .'
+            run_cmd(cmd, gitdir)
+            cmd = f'git config user.email {email_address}'
+            run_cmd(cmd, gitdir)
+            cmd = f'git config user.name {email_name}'
             run_cmd(cmd, gitdir)
             cmd = 'git commit -m Content'
             run_cmd(cmd, gitdir)
