@@ -77,7 +77,7 @@ This repo contains scripting that assists in the setup of your agile authoring r
 
 Once the pre-requisites are installed, use the scripting from located in this repo to setup catalog, profile and component-definition repos. The script employs the templates cited above to create catalog, profile, and component-definition and customized for the example Acme organization.
 
-For the catalog and profile, the scripting downloads and employs the OSCAL jost from NIST 800-53.
+For the catalog and profile, the scripting downloads and employs the OSCAL json from NIST 800-53.
 
 For the component-definition, the scripting download and employs a mini-csv file from the present repo.
 
