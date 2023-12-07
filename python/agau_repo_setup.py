@@ -334,6 +334,9 @@ class AgAuSetup():
         # GH_TOKEN init:
         if args.gh_token:
             os.environ[GH_TOKEN] = args.gh_token
+        # debug
+        if args.debug:
+            logger.setLevel('DEBUG')
         # validate gh
         validate_gh()
         # read yaml
@@ -375,6 +378,9 @@ class AgAuSetup():
         default_gh_token = None
         help_gh_token = f'value to be used for {GH_TOKEN}, default = existing environment value of {GH_TOKEN}'
         parser.add_argument('--gh-token', action='store', default=default_gh_token, help=help_gh_token)
+        #
+        help_debug = 'issue debug messages'
+        parser.add_argument('--debug', action='store_true', help=help_debug)
         #
         return parser.parse_args()
 

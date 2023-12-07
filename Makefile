@@ -21,7 +21,13 @@ help:
 create: fetch
 	python python/agau_repo_setup.py --action create --config agau-repo-setup.yaml
 
+create-debug: fetch
+	python python/agau_repo_setup.py --action create --config agau-repo-setup.yaml --debug
+	
 delete:
+	python python/agau_repo_setup.py --action delete --config agau-repo-setup.yaml
+	
+delete-debug:
 	python python/agau_repo_setup.py --action delete --config agau-repo-setup.yaml
 
 fetch: catalog profile component-definition
