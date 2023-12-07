@@ -63,6 +63,12 @@ Instructions are given on setting up GitHub artifacts, if you don't already have
 - Setup a GitHub account: [signing-up-for-a-new-github-account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account)
 - Create a GitHub token: [creating-a-personal-access-token](https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token)
 
+Suggested GitHub token privileges:
+<i>
+admin:enterprise, admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook, admin:ssh_signing_key, codespace, delete:packages, delete_repo`*`, gist, notifications, project, repo, user, workflow`*`, write:discussion, write:packages
+
+`*` indicates required token privilege for scripting assisted repo setup/teardown, described below.
+</i>
 
 ##### 4. Local pre-requisites for automated repo's setup
 
