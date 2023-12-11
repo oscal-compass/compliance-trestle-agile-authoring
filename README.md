@@ -6,7 +6,7 @@ To establish foundational knowledge about OSCAL and the agile authoring paradigm
 You can jump directly to step 5 to setup repos, if you have the pre-reqs installed already (steps 3 and 4).
 
 
-##### 1. Overview: agile authoring for compliance-trestle
+##### 1.0 Overview: agile authoring for compliance-trestle
 
 Compliance-[trestle](https://github.com/IBM/compliance-trestle)
 supports agile authoring of 
@@ -36,7 +36,7 @@ The `component-definition` repo maintains a component-definition, the connection
 -----
 
 
-##### 2. GIT repo templates
+##### 2.0 GIT repo templates
 
 A collection of agile authoring templates are provided, each pre-populated with the scripts and
 configurations needed to support agile authoring.
@@ -54,7 +54,10 @@ The following are template GIT repos that can be used to create corresponding tr
 - [component-definition](https://github.com/IBM/compliance-trestle-template-component-definition)
 
 
-##### 3. GIT pre-requisites
+<a name="anchor3dot0">
+</a>
+
+##### 3.0 GIT pre-requisites
 
 In order to establish a collection of repos, one each for `catalog`, `profile` and `component-definition`, these are the pre-requisites needed in the GIT domain. 
 
@@ -70,7 +73,10 @@ admin:enterprise, admin:gpg_key, admin:org, admin:org_hook, admin:public_key, ad
 `*` indicates required token privilege for scripting assisted repo setup/teardown, described below.
 </i>
 
-##### 4. Local pre-requisites for automated repo's setup
+<a name="anchor4dot0">
+</a>
+
+##### 4.0 Local pre-requisites for automated repo's setup
 
 This repo contains scripting that assists in the setup of your agile authoring repos. For the scripting to run successfully, the following pre-requisites are needed on your local machine (e.g. laptop):
 
@@ -79,7 +85,9 @@ This repo contains scripting that assists in the setup of your agile authoring r
 - git command: [git install](https://github.com/git-guides/install-git)
 - gh command: [gh installation](https://github.com/cli/cli#installation)
 
-##### 5. Assisted repos setup, with sample data content
+##### 5.0 Assisted repos setup, with sample data content
+
+Assure pre-requisites [3.0](#anchor3dot0) and [4.0](#anchor4dot0) have been met.
 
 Once the pre-requisites are installed, use the scripting from located in this repo to setup catalog, profile and component-definition repos. The script employs the templates cited above to create catalog, profile, and component-definition and customized for the example Acme organization.
 
@@ -226,7 +234,7 @@ python python/agau_repo_setup.py --action create --config agau-repo-setup.yaml
 That's it. You should now be able to visit the URLs of the newly minted repos. Look in the `develop` branch to see the `data` and corresponding OSCAL documents under catalogs, profiles, and component-definitions accordingly.
  
 
-##### 6. Assisted repos teardown
+##### 6.0 Assisted repos teardown
 
 If/when the repos are no longner wanted, the repos can be easily removed. 
 <i style="color:red">
@@ -250,7 +258,7 @@ python python/agau_repo_setup.py --action delete --config agau-repo-setup.yaml
 13-Nov-23 15:43:34 I repo https://github.com/degenaro/acme-component-definition deleted
 ```
 
-##### 7. references
+##### 7.0 references
 
 - [Compliance Automated Standard Solution (COMPASS), Part 1: Personas and Roles](https://dzone.com/articles/compass-compliance-part-1)
 - [Compliance Automated Standard Solution (COMPASS), Part 2: Trestle SDK](https://dzone.com/articles/compliance-automated-standard-solution-compass-part-2-trestle-sdk)
