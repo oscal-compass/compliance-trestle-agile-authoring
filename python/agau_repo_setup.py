@@ -148,7 +148,7 @@ def update_workflow(workflow_path: pathlib.Path, repo_oscal_type: str, git_owner
                 line = line.replace('my-repo-base/my-component-definition', f'{git_owner}/{downstream}')
                 line = line.replace('./my-component-definition', f'{downstream}')
                 f.write(line)
-            elif repo_oscal_type == 'my-component-definition':
+            elif repo_oscal_type == 'component-definition':
                 line = line.replace('my-repo-base/my-system-security-plan', f'{git_owner}/{downstream}')
                 line = line.replace('./my-system-security-plan', f'{downstream}')
                 f.write(line)
@@ -293,6 +293,10 @@ def repo_create(
         run_cmd(cmd, gitdir)
         cmd = 'git push'
         run_cmd(cmd, gitdir)
+        
+        import time
+        time.sleep(7)
+        
         # create develop branch
         cmd = 'git branch develop'
         run_cmd(cmd, gitdir)
