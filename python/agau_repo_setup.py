@@ -289,7 +289,7 @@ def repo_create(
         run_cmd(cmd, gitdir)
         cmd = f'git config user.name {email_name}'
         run_cmd(cmd, gitdir)
-        cmd = 'git commit -m Configure'
+        cmd = 'git commit -m Configure -s'
         run_cmd(cmd, gitdir)
         cmd = 'git push'
         run_cmd(cmd, gitdir)
@@ -306,7 +306,7 @@ def repo_create(
             run_cmd(cmd, gitdir)
             cmd = f'git config user.name {email_name}'
             run_cmd(cmd, gitdir)
-            cmd = 'git commit -m Content'
+            cmd = 'git commit -m Content -s'
             run_cmd(cmd, gitdir)
             cmd = 'git push --set-upstream origin develop'
             run_cmd(cmd, gitdir)
