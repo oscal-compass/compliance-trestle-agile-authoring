@@ -293,10 +293,6 @@ def repo_create(
         run_cmd(cmd, gitdir)
         cmd = 'git push'
         run_cmd(cmd, gitdir)
-        
-        import time
-        time.sleep(7)
-        
         # create develop branch
         cmd = 'git branch develop'
         run_cmd(cmd, gitdir)
