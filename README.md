@@ -8,7 +8,7 @@ You can jump directly to step 5 to setup repos, if you have the pre-reqs install
 
 ##### 1.0 Overview: agile authoring for compliance-trestle
 
-Compliance-[trestle](https://github.com/IBM/compliance-trestle)
+Compliance-[trestle](https://github.com/oscal-compass/compliance-trestle)
 supports agile authoring of 
 [OSCAL](https://pages.nist.gov/OSCAL/) 
 artifacts such as 
@@ -49,9 +49,9 @@ Templates are provided to set up agile authoring for each of the following: cata
 
 The following are template GIT repos that can be used to create corresponding trestle-based agile authoring repos by performing a few needed modifications to suit your environment.
 
-- [catalog](https://github.com/IBM/compliance-trestle-template-catalog)
-- [profile](https://github.com/IBM/compliance-trestle-template-profile)
-- [component-definition](https://github.com/IBM/compliance-trestle-template-component-definition)
+- [catalog](https://github.com/oscal-compass/compliance-trestle-template-catalog)
+- [profile](https://github.com/oscal-compass/compliance-trestle-template-profile)
+- [component-definition](https://github.com/oscal-compass/compliance-trestle-template-component-definition)
 
 
 <a name="anchor3dot0">
@@ -103,14 +103,14 @@ Steps to create the repos follow.
 ```
 $ mkdir git.clone   
 $ cd git.clone  
-git.clone$ git clone https://github.com/IBM/compliance-trestle-agile-authoring.git  
+git.clone$  git clone https://github.com/oscal-compass/compliance-trestle-agile-authoring.git
 Cloning into 'compliance-trestle-agile-authoring'...
-remote: Enumerating objects: 154, done.
-remote: Counting objects: 100% (154/154), done.
-remote: Compressing objects: 100% (147/147), done.
-remote: Total 154 (delta 56), reused 99 (delta 5), pack-reused 0
-Receiving objects: 100% (154/154), 10.58 MiB | 46.91 MiB/s, done.
-Resolving deltas: 100% (56/56), done.
+remote: Enumerating objects: 224, done.
+remote: Counting objects: 100% (224/224), done.
+remote: Compressing objects: 100% (208/208), done.
+remote: Total 224 (delta 86), reused 141 (delta 7), pack-reused 0
+Receiving objects: 100% (224/224), 15.76 MiB | 55.26 MiB/s, done.
+Resolving deltas: 100% (86/86), done.
 ```
 
 ###### 5.2 export your GH_TOKEN (replace with your token value)
@@ -197,12 +197,12 @@ NIST_SP-800-53_rev5_HIGH-baseline_profile.json  100%[===========================
 if [ ! -d "/tmp/download/compliance-trestle/scratch-area/component-definition/data" ]; then \
 	mkdir -p /tmp/download/compliance-trestle/scratch-area/component-definition/data; \
 	cd $(DIR_COM); \
-	wget https://raw.githubusercontent.com/IBM/compliance-trestle-agile-authoring/main/data/acme-component-definition.csv; \
-	wget https://raw.githubusercontent.com/IBM/compliance-trestle-agile-authoring/main/data/acme-component-definition.config; \
+	wget https://raw.githubusercontent.com/oscal-compass/compliance-trestle-agile-authoring/main/data/acme-component-definition.csv; \
+	wget https://raw.githubusercontent.com/oscal-compass/compliance-trestle-agile-authoring/main/data/acme-component-definition.config; \
 fi \
 
 /bin/sh: line 2: DIR_COM: command not found
---2023-11-13 15:34:53--  https://raw.githubusercontent.com/IBM/compliance-trestle-agile-authoring/main/data/acme-component-definition.csv
+--2023-11-13 15:34:53--  https://raw.githubusercontent.com/oscal-compass/compliance-trestle-agile-authoring/main/data/acme-component-definition.csv
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -213,7 +213,7 @@ acme-component-definition.csv.7                 100%[===========================
 
 2023-11-13 15:34:53 (4.20 MB/s) - ‘acme-component-definition.csv.7’ saved [22716/22716]
 
---2023-11-13 15:34:53--  https://raw.githubusercontent.com/IBM/compliance-trestle-agile-authoring/main/data/acme-component-definition.config
+--2023-11-13 15:34:53--  https://raw.githubusercontent.com/oscal-compass/compliance-trestle-agile-authoring/main/data/acme-component-definition.config
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -266,7 +266,7 @@ python python/agau_repo_setup.py --action delete --config agau-repo-setup.yaml
 - [Compliance Automated Standard Solution (COMPASS), Part 4: Topologies of Compliance Policy Administration Centers](https://dzone.com/articles/compliance-automated-standard-solution-compass-part4-topologies-compliance-policy-administration-centers)
 
 
-- [Trestle: Compliance-as-Code Orchestrator and Automation Workflows](https://csrc.nist.gov/csrc/media/Presentations/2022/oscal-mini-workshop-2-ibm-s-trestle/IBM_Trestle.pdf)
+- [Trestle: Compliance-as-Code Orchestrator and Automation Workflows](https://csrc.nist.gov/csrc/media/Presentations/2022/oscal-mini-workshop-2-ibm-s-trestle/oscal-compass_Trestle.pdf)
 
 
 - [NIST OSCAL](https://pages.nist.gov/OSCAL/)

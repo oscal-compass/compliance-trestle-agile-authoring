@@ -55,6 +55,6 @@ component-definition:
 	if [ ! -d "$(DIR_COM)" ]; then \
 		mkdir -p $(DIR_COM); \
 		cd $(DIR_COM); \
-		wget https://raw.githubusercontent.com/IBM/compliance-trestle-agile-authoring/main/data/acme-component-definition.csv; \
-		wget https://raw.githubusercontent.com/IBM/compliance-trestle-agile-authoring/main/data/acme-component-definition.config; \
+		wget https://raw.githubusercontent.com/oscal-compass/compliance-trestle-agile-authoring/main/data/acme-component-definition.csv; \
+		wget https://raw.githubusercontent.com/oscal-compass/compliance-trestle-agile-authoring/main/data/acme-component-definition.config; \
 	fi \
