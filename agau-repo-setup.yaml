@@ -12,7 +12,7 @@ repos:
 
   # catalog repo
   acme-catalog-nist-800-53:
-    template: https://github.com/IBM/compliance-trestle-template-catalog
+    template: https://github.com/oscal-compass/compliance-trestle-template-catalog
     access: public
     oscal-type: catalog
     downstream: 
@@ -27,7 +27,7 @@ repos:
         
   # profile repo
   acme-profile-nist-800-53:
-    template: https://github.com/IBM/compliance-trestle-template-profile
+    template: https://github.com/oscal-compass/compliance-trestle-template-profile
     access: public
     oscal-type: profile
     downstream: 
@@ -52,7 +52,7 @@ repos:
         
   # component-definition repo
   acme-component-definition:
-    template: https://github.com/IBM/compliance-trestle-template-component-definition
+    template: https://github.com/oscal-compass/compliance-trestle-template-component-definition
     access: public
     oscal-type: component-definition
     downstream: 
