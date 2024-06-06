@@ -1,4 +1,5 @@
-## compliance-trestle-agile-authoring
+
+# <img alt="Logo" width="50px" src="./images/compliance-agile-authoring-800x800.png" style="vertical-align: middle;" /> Compliance-trestle agile-authoring
 
 This repo is comprises documentation and tutorial for OSCAL-oriented agile authoring pipelines.
 To establish foundational knowledge about OSCAL and the agile authoring paradigm, see the references at the bottom of this page.
