@@ -1,0 +1,90 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: create-catalog-template-github-repo
+spec:
+  params:
+    - name: template-owner
+      description: The owner of the template repository
+      type: string
+    - name: template-repo
+      description: The name of the template repository
+      type: string
+    - name: new-repo-owner
+      description: The owner of the new repository
+      type: string
+    - name: new-repo-name
+      description: The name of the new repository
+      type: string
+    - name: webhook-secret
+      description: The secret for the webhook
+      type: string
+  steps:
+    - name: check-if-repo-exists
+      image: curlimages/curl
+      script: |
+        #!/bin/sh
+
+        echo "Checking if the repository already exists..."
+        REPO_EXISTS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$(params.new-repo-owner)/$(params.new-repo-name))
+
+        if [ $REPO_EXISTS -eq 200 ]; then
+          echo "Repository already exists. Deleting..."
+          curl -s -X DELETE -u $(params.new-repo-owner):${TOKEN} https://api.github.com/repos/$(params.new-repo-owner)/$(params.new-repo-name)
+          echo "Repository deleted."
+        else 
+          echo "Repository does not exist. Proceeding to create..."
+        fi
+      env:
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: github-token
+              key: token
+    - name: create-repo
+      image: curlimages/curl
+      script: |
+        #!/bin/sh
+        curl -X POST \
+        -H "Authorization: token ${TOKEN}" \
+        -d '{
+              "owner": "$(params.new-repo-owner)",
+              "name": "$(params.new-repo-name)",
+              "include_all_branches": false,
+              "private": false
+            }' \
+        https://api.github.com/repos/$(params.template-owner)/$(params.template-repo)/generate
+      env:
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: github-token
+              key: token
+
+    - name: setup-webhook
+      image: curlimages/curl
+      script: |
+        #!/bin/sh
+        echo "Repository created. Setting up the webhook..."
+        curl -u "$(params.new-repo-owner):${TOKEN}" \
+        -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        https://api.github.com/repos/$(params.new-repo-owner)/$(params.new-repo-name)/hooks \
+        -d '{
+              "name": "web",
+              "active": true,
+              "events": [
+                "push"
+              ],
+              "config": {
+                "url": "https://be42-2600-1700-1ea0-7e70-906-59ed-dcfc-c88b.ngrok-free.app",
+                "content_type": "json",
+                "secret": "$(params.webhook-secret)"
+              }
+            }'
+      env:
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: github-token
+              key: token

@@ -1,0 +1,86 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: create-clone-push-repo
+spec:
+  workspaces: # Define the workspaces that the PipelineRun will pass in
+    - name: cloned-repo
+  params:
+    - name: template-owner
+      description: The owner of the template repository
+      type: string
+    - name: template-repo
+      description: The name of the template repository
+      type: string
+    - name: new-repo-name
+      description: The name of the new repository to create
+      type: string
+    - name: new-repo-owner
+      description: The owner of the new repository
+      type: string
+    - name: new-repo-owner-email
+      description: The email of the owner of the new repository
+      type: string
+    - name: catalog-json-url
+      description: The URL of the catalog JSON file
+      type: string
+    - name: webhook-secret
+      description: The secret for the webhook
+      type: string
+  tasks:
+    - name: create-repo
+      taskRef:
+        name: create-catalog-template-github-repo
+      params:
+        - name: template-owner
+          value: $(params.template-owner)
+        - name: template-repo
+          value: $(params.template-repo)
+        - name: new-repo-name
+          value: $(params.new-repo-name)
+        - name: new-repo-owner
+          value: $(params.new-repo-owner)
+        - name: webhook-secret
+          value: $(params.webhook-secret)
+    - name: clone-repo
+      runAfter:
+        - create-repo
+      taskRef:
+        name: clone-repo
+      params:
+        - name: repo-url
+          value: github.com/$(params.new-repo-owner)/$(params.new-repo-name).git
+        - name: new-repo-name
+          value: $(params.new-repo-name)
+      workspaces:
+        - name: cloned-repo # The name of the workspace defined in the task
+          workspace: cloned-repo # The name of the workspace defined in the Pipeline and will be mapped to the workspace in the task
+    - name: download-catalog-json
+      runAfter:
+        - clone-repo
+      taskRef:
+        name: wget
+      params:
+        - name: url
+          value: $(params.catalog-json-url)
+        - name: diroptions
+          value:
+            - "-P"
+      workspaces:
+        - name: wget-workspace
+          workspace: cloned-repo
+    - name: upload-catalog-json
+      runAfter:
+        - download-catalog-json
+      taskRef:
+        name: upload-catalog-json
+      params:
+        - name: repo-name
+          value: $(params.new-repo-name)
+        - name: user-email
+          value: $(params.new-repo-owner-email)
+        - name: user-name
+          value: $(params.new-repo-owner)
+      workspaces:
+        - name: cloned-repo # The name of the workspace defined in the task
+          workspace: cloned-repo # The name of the workspace defined in the Pipeline and will be mapped to the workspace in the task
