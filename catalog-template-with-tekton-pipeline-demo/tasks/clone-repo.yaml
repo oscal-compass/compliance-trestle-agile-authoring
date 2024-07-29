@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: clone-repo
+spec:
+  workspaces:
+    - name: cloned-repo
+      description: The workspace contains the cloned repository
+  params:
+    - name: repo-url
+      description: The URL of the repository to clone
+      type: string
+    - name: new-repo-name
+      description: The name of the new repository
+      type: string
+  steps:
+    - name: clone-repo
+      image: alpine/git
+      script: |
+        #!/bin/sh
+        git clone https://${TOKEN}:x-oauth-basic@$(params.repo-url)  $(workspaces.cloned-repo.path)/$(params.new-repo-name)
+        ls -l $(workspaces.cloned-repo.path)
+      env:
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: github-token
+              key: token

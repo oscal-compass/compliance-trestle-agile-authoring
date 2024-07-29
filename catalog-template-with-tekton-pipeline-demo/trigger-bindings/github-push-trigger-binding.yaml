@@ -1,0 +1,15 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: github-push-trigger-binding
+spec:
+  params:
+    - name: changedfiles
+      value: $(extensions.changed_files)
+    # # the 'body' is a special variable that contains the entire payload of the event.
+    # # See more GitHub webhook payload in https://docs.github.com/en/webhooks/webhook-events-and-payloads#push
+    # # or check the webhook history in Settings > Webhooks > Recent Deliveries
+    - name: repo-url
+      value: $(body.repository.html_url)
+    - name: repo-name
+      value: $(body.repository.name)

@@ -1,0 +1,74 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: update-downstream
+spec:
+  params:
+    - name: changedfiles
+      description: The files that have changed
+    - name: repo-url
+      description: The URL of the repository
+    - name: repo-name
+      description: The name of the repository
+  tasks:
+    - name: perform-update
+      taskSpec:
+        steps:
+          - name: update
+            image: python:latest
+            script: |
+              #!/bin/bash
+              echo "Checking if any files under catalogs/ directory have changed..."
+
+              # Loop through the changed files
+              matched_json_files=()
+              matched_md_files=()   
+              for file in $(params.changedfiles); do
+                if [[ $file == catalogs/* ]]; then
+                  matched_json_files+=($file)
+                elif [[ $file == md_catalogs/* ]]; then
+                  matched_md_files+=($file)
+                fi
+              done
+
+              if [[ ${#matched_json_files[@]} -gt 0 || ${#matched_md_files[@]} -gt 0 ]]; then
+                echo "Install trestle"
+                python3 -m pip install -q --upgrade pip setuptools
+                python3 -m pip install -q compliance-trestle
+                python3 -m pip install -q python-semantic-release==7.31.4
+
+                
+                echo "Clone the repository"
+                git clone $(params.repo-url)
+                cd $(params.repo-name)
+                git checkout develop
+                git config --global credential.helper store
+                echo "https://${TOKEN}:@github.com" > ~/.git-credentials
+                git config --global user.email "yihaomai@gmail.com"
+                git config --global user.name "Ma1h01"              
+              fi
+
+              if [[ ${#matched_json_files[@]} -gt 0 ]]; then
+                echo "Files under catalogs/ directory have changed. Files include: ${matched_json_files[@]}"
+                echo "Generate the markdown files from catalog JSON file."
+                trestle author catalog-generate --name . --output md_catalogs/catalog-folder
+                git status              
+                git commit -am "generate markdown files"
+                git push
+                echo "Proceeding to update downstream repositories..."
+              elif [[ ${#matched_md_files[@]} -gt 0 ]]; then
+                echo "Files under md_catalogs/ directory have changed. Files include: ${matched_md_files[@]}"
+                trestle author catalog-assemble --set-parameters --markdown md_catalogs/catalog-folder --output .
+                git status
+                git commit -am "assemble markdown files into catalog.json"
+                git push
+                echo "Proceeding to update downstream repositories..."
+              else
+                echo "No files under catalogs/ directory have changed."
+              fi
+            env:
+              - name: TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: github-token
+                    key: token
