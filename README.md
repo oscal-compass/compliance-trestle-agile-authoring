@@ -275,7 +275,7 @@ python python/agau_repo_setup.py --action delete --config agau-repo-setup.yaml
 ## License & Authors
 
 If you would like to see the detailed LICENSE click [here](LICENSE).
-Consult [contributors](https://github.com/oscal-compass/compliance-trestle/graphs/contributors) for a list of authors and [maintainers](MAINTAINERS.md) for the core team.
+Consult [contributors](https://github.com/oscal-compass/compliance-trestle-agile-authoring/graphs/contributors) for a list of authors and [maintainers](MAINTAINERS.md) for the core team.
 
 ```text
 # Copyright (c) 2024 The OSCAL Compass Authors. All rights reserved.
