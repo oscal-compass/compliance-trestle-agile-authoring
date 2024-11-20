@@ -1,0 +1,27 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-push-trigger-template
+spec:
+  params:
+    - name: changedfiles
+      description: The files that have changed
+    - name: repo-url
+      description: The URL of the repository
+    - name: repo-name
+      description: The name of the repository
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: update-downstream-
+      spec:
+        pipelineRef:
+          name: update-downstream
+        params:
+          - name: changedfiles
+            value: $(tt.params.changedfiles)
+          - name: repo-url
+            value: $(tt.params.repo-url)
+          - name: repo-name
+            value: $(tt.params.repo-name)

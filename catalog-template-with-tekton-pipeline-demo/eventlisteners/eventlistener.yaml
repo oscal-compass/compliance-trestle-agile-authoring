@@ -1,0 +1,36 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: github-push
+spec:
+  serviceAccountName: tekton-service-account
+  triggers:
+    - name: push-trigger
+      interceptors:
+        - ref:
+            name: "github"
+            kind: ClusterInterceptor
+            apiVersion: triggers.tekton.dev
+          params:
+            - name: "secretRef"
+              value:
+                secretName: github-secret
+                secretKey: secretToken
+            - name: "eventTypes"
+              value: ["push"]
+            - name: "addChangedFiles"
+              value:
+                enabled: true
+        - ref:
+            name: cel
+          params:
+            - name: filter
+              # only trigger the pipeline if the changed files are under catalogs/ or md_catalogs/, but not both
+              value: extensions.changed_files.matches('catalogs/')||extensions.changed_files.matches('md_catalogs/')
+      bindings:
+        - ref: github-push-trigger-binding
+      template:
+        ref: github-push-trigger-template
+  resources:
+    kubernetesResource:
+      serviceType: LoadBalancer

@@ -1,0 +1,50 @@
+# Description
+
+This repo contains Tekton pipeline configuration files that can be integrated
+into the
+[agile-authoring](https://github.com/oscal-compass/compliance-trestle-agile-authoring)
+project. Currently, these Tekton pipelines only work using
+[compliance-trestle-template-catalog](https://github.com/oscal-compass/compliance-trestle-template-catalog).
+The downstream-update feature is under development.
+
+# Important
+1. This is a preliminary draft of the Tekton integration. There may be potential bugs that have been overlooked, and further optimizations are required.
+2. User should only modify the JSON file or Markdowns file one at a time. Never modify both at the same time.
+
+# Prerequisites
+
+1. Clone and upload this [template repo](https://github.com/oscal-compass/compliance-trestle-template-catalog), and remove any existing GitHub Action pipelines.
+2. [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download)
+3. [kubectl](https://kubernetes.io/docs/tasks/tools/)
+4. [ngrok](https://ngrok.com/docs/getting-started/) forwards the locally hosted
+   Tekton EventListener to the internet
+
+# Steps
+
+1. `minikube start` - starts a K8s cluster
+2. Go to `runners/pipeline-runner.yaml`. Update the value of :
+   1. `template-owner` to the GitHub account name which contains the template repo cloned in the prerequisites step
+   2. `template-repo` to the name of the template repo cloned in the prerequisites step
+   1. `new-repo-name` to your desired new repository name
+   2. `new-repo-owner` to your GitHub account name
+   3. `new-repo-owner-email` to your GitHub email
+   4. `webhook-secret` to your desired secret
+3. Go to `secrets/`. Update:
+   1. your GitHub token encoded in base64 in `token-secret.yaml`
+   2. your webhook secret you added in step 2 in `webhook-secret.yaml`
+4. Go to `pipelines/update-downstream.yaml`. Update line `47` and `48` to your Github email and username
+4. `ngrok http http://localhost:8080` - forward the port 8080 used by
+   EventListener to a URL, and copy the URL in `Forwarding`.
+5. Go to `line 80` of `tasks/create-repo.yaml`, and paste the URL there
+6. `make install-resources` - install Tekton built-in resources to the cluster
+7. `make install-defined-resources` - install user-defined Tekton resources to
+   the cluster
+8. `make forward-port` - forward the EventListener to port 8080
+9. `make dashboard` - run a Tekton dashboard, and go to http://localhost:9097 to
+   see pipeline in action
+10. `make run` - runs the pipeline
+
+# Results
+
+You can now go to your GitHub Repository to view the created repo, and modify
+the JSON file/markdowns to trigger the Tekton pipeline

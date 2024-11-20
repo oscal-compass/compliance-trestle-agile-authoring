@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: run-pipeline
+spec:
+  pipelineRef:
+    name: create-clone-push-repo
+  params:
+    - name: template-owner
+      value: Ma1h01
+    - name: template-repo
+      value: template-catalog-tekton
+    - name: new-repo-name
+      value: my-new-catalog-template
+    - name: new-repo-owner
+      value: Ma1h01
+    - name: new-repo-owner-email
+      value: yihaomai@gmail.com
+    - name: catalog-json-url
+      value: https://raw.githubusercontent.com/usnistgov/oscal-content/release-v1.0.5-update/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json
+    - name: webhook-secret
+      value: 123456
+  workspaces:
+    - name: cloned-repo
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 1Gi
