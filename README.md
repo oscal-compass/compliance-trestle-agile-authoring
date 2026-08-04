@@ -294,7 +294,7 @@ Consult [contributors](https://github.com/oscal-compass/compliance-trestle-agile
 
 ```
 
------
+______________________________________________________________________
 
 We are a Cloud Native Computing Foundation sandbox project.
 
